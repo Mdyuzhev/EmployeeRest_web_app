@@ -21,7 +21,7 @@ import java.util.Properties;
 public class MyConfig {
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
@@ -37,20 +37,20 @@ public class MyConfig {
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory().setDataSource(dataSource());
-        sessionFactory().setPackagesToScan("com.mikhaildyuzhev.spring.rest.entity");
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan("com.mikhaildyuzhev.spring.rest.entity");
 
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
 
-        sessionFactory().setHibernateProperties(hibernateProperties);
+        sessionFactory.setHibernateProperties(hibernateProperties);
 
         return sessionFactory;
     }
 
     @Bean
-    public HibernateTransactionManager transactionManager(){
+    public HibernateTransactionManager transactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
 
         transactionManager.setSessionFactory(sessionFactory().getObject());

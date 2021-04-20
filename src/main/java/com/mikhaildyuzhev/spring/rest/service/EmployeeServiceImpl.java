@@ -37,8 +37,5 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Transactional
     public void deleteEmployee(int id) {
           employeeDAO.deleteEmployee(id);
-
     }
-
-
 }
